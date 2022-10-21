@@ -2,8 +2,21 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
+#from cleaning import words_to_delete 
 import re
 import time
+import pysentimiento 
+
+
+def cleaning_sentences(sentence:str)-> str:
+    words_to_delete = ['Δdocument','getElementById', 'ak_js_2',\
+    'setAttribute', 'value','new', 'Date', 'getTime','ak_js_3','Debe responder al hcaptcha',\
+    'Guarda mi nombre correo electrónico y web en este navegador para la próxima vez que comente',\
+    ] 
+    sentence = re.sub(r'\W+', ' ', sentence)
+    for word in words_to_delete: 
+        sentence = sentence.replace(word,'') 
+    return sentence 
 
 class Info(BaseModel):
     texto:List[str]
@@ -40,11 +53,17 @@ def run(info:Info):
     }
     data  = info.dict()
     contador = 0
+    print('imprimiendo data')
     print(data)
-    for i,j in data.items():
-        for p in j:
-            response[i].append(sum(1 for _ in re.finditer(r'\b%s\b' % re.escape('mujer'), p)))
+    for llave,valores in data.items():
+        valores = list(map(cleaning_sentences,valores))
+        for valor in valores:
+            print('imprimiendo la data limpia *********************')
+            print(valor)
+            response[llave].append(sum(1 for _ in re.finditer(r'\b%s\b' % re.escape('mujer'), valor)))
+    print('imprimiendo contador') 
     print(contador)
+    print('imprimiendo response ')
     print(response)
     time.sleep(2)
     return {"result":response}

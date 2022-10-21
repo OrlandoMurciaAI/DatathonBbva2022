@@ -3,3 +3,7 @@
 #No subir el entorno virtual actual
 venv 
 backend/__pycache__/main.cpython-310.pyc
+pruebas/.ipynb_checkpoints/pruebas_modelo-jvsc-20c95341-3eb2-4495-acc2-aa2761bccc1c6b0074d2-88c3-4de4-94f9-c4ad604f5d6d-checkpoint.ipynb
+.gitignore
+pruebas/pruebas_modelo-jvsc-20c95341-3eb2-4495-acc2-aa2761bccc1c6b0074d2-88c3-4de4-94f9-c4ad604f5d6d.ipynb
+backend/__pycache__/cleaning.cpython-310.pyc
