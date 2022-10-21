@@ -6,9 +6,9 @@ import re
 import time
 
 class Info(BaseModel):
-    textos:List[str]
-    titulos:List[str]
-    titulos_sec:List[str]
+    texto:List[str]
+    main_titles:List[str]
+    second_titles:List[str]
 
 
 app = FastAPI()
@@ -33,11 +33,18 @@ async def root():
 
 @app.post("/model")
 def run(info:Info):
+    response = {
+        "texto":[],
+        "main_titles":[],
+        "second_titles":[]
+    }
     data  = info.dict()
     contador = 0
-    for p in data["textos"]:
-        contador += sum(1 for _ in re.finditer(r'\b%s\b' % re.escape('mujer'), p))
+    print(data)
+    for i,j in data.items():
+        for p in j:
+            response[i].append(sum(1 for _ in re.finditer(r'\b%s\b' % re.escape('mujer'), p)))
     print(contador)
-    print(info)
+    print(response)
     time.sleep(2)
-    return {"result":contador}
+    return {"result":response}
