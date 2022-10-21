@@ -1,0 +1,32 @@
+.tag-label{
+
+    position: fixed;
+    left: 0 !important;
+    bottom:10px !important;
+    border-radius: 10px;
+    color: white;
+    height: 3rem;
+    width:8rem;
+    z-index:10000 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.search{
+    background-color: rgba(212, 249, 0, 0.9);
+
+}
+.fail{
+    background-color: rgba(255, 58, 32, 0.9);
+
+}
+.success{
+    background-color: rgba(2, 163, 23, 0.9);
+
+}
+.inf{
+    background-color: rgba(0, 37, 249, 0.9);
+
+}
+
