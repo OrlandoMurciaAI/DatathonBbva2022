@@ -2,3 +2,4 @@
 
 #No subir el entorno virtual actual
 venv 
+backend/__pycache__/main.cpython-310.pyc
