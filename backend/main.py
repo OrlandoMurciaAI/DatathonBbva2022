@@ -5,7 +5,8 @@ from typing import List
 #from cleaning import words_to_delete 
 import re
 import time
-import pysentimiento 
+from pysentimiento import create_analyzer
+hate_speech_analyzer = create_analyzer(task="hate_speech", lang="es")
 
 
 def cleaning_sentences(sentence:str)-> str:
@@ -57,6 +58,8 @@ def run(info:Info):
     print(data)
     for llave,valores in data.items():
         valores = list(map(cleaning_sentences,valores))
+        predicts = hate_speech_analyzer.predict(valores) 
+        print(predicts)
         for valor in valores:
             print('imprimiendo la data limpia *********************')
             print(valor)
