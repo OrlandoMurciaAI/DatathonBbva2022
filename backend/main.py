@@ -10,14 +10,22 @@ hate_speech_analyzer = create_analyzer(task="hate_speech", lang="es")
 
 focus_words = ['comunidad','gay','lgbti','racismo','negros','Mujer','Mujerzuela','incapaz','no inclusivo','desigualdad','genero','orgullo gay','descalificado']
 
+def cleaning_tildes(sentence: str)->str: 
+    """
+    Definition: replace the tildes found in the sentence
+    """
+    sentence = sentence.replace('á','a').replace('é','e').replace('í','i').replace('ó','o').replace('ú','u') 
 
-
+    return sentence 
 
 def cleaning_html_words(sentence:str)-> str:
     """
+    Definition: Delete any html/js/css tag found at the moment of scrapping the data. 
+                Also deletes not alphanumeric chars found in the sentence
     input: the sentence we are trying to clean 
     output: the sentence cleaned
     """
+     
     words_to_delete = ['Δdocument','getelementbyid', 'ak_js_2',\
     'setattribute', 'value','new', 'Date', 'getTime','ak_js_3','Debe responder al hcaptcha',\
     'Guarda mi nombre correo electrónico y web en este navegador para la próxima vez que comente',\
