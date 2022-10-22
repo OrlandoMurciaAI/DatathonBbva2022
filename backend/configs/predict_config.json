@@ -1,1 +1,9 @@
-{"aggressive": "#FF0000", "hateful": "#800080", "targeted": "#abdbe3", "aggresive,hateful": "#922b3e", "aggresive,hateful,targeted": "#e28743", "aggressive,targeted": "#f701f6", "hateful,targeted": " #fff201"}
+{
+    "aggressive": "rgba(255, 0, 0, 0.3)",
+    "hateful": "rgba(128, 0, 128, 0.3)",
+    "targeted": "rgba(171, 219, 227, 0.3)",
+    "aggressive,hateful": "rgba(146, 43, 62, 0.3)",
+    "aggresive,hateful,targeted": "rgba(226, 135, 67, 0.3)",
+    "aggressive,targeted": "rgba(247, 1, 246, 0.3)",
+    "hateful,targeted": "rgba(255, 242, 1, 0.3)"
+}

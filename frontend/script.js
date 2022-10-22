@@ -20,28 +20,28 @@ let resultado = replaceText(base).then((res)=>{
     for (let type in response){
         let counter = 0
         for(let text of response[type]){
-            if (text >0 ){
-                base[type][counter].style.background = 'rgba(255, 58, 32, 0.4)'
+            if (text){
+                base[type][counter].style.background = text
             }
             counter = counter+=1
         }
     } 
-    let counter_textos = response["texto"].reduce(add,0)
-    let counter_titles=response["main_titles"].reduce(add,0)
-    let counter_sec_titles =response["second_titles"].reduce(add,0)
+    //let counter_textos = response["texto"].reduce(add,0)
+    //let counter_titles=response["main_titles"].reduce(add,0)
+    //let counter_sec_titles =response["second_titles"].reduce(add,0)
 
 
-    let final_counter = counter_textos + counter_titles + counter_sec_titles
-    console.log(final_counter)
-    if(final_counter >0){
-        tag.classList.remove("search")
-        tag.classList.add("fail") 
-        tag.innerHTML = "Probabilidad de Sesgo"
-    }else{
-        tag.classList.remove("search")
-        tag.classList.add("success")
-        tag.innerHTML = "Libre de Sesgo"
-    }
+    //let final_counter = counter_textos + counter_titles + counter_sec_titles
+    //console.log(final_counter)
+    //if(final_counter >0){
+    //    tag.classList.remove("search")
+    //    tag.classList.add("fail") 
+    //     tag.innerHTML = "Probabilidad de Sesgo"
+    // }else{
+    //     tag.classList.remove("search")
+    //     tag.classList.add("success")
+    //     tag.innerHTML = "Libre de Sesgo"
+    // }
     
     document.body.appendChild(tag)
 });

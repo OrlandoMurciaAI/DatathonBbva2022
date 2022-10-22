@@ -11,7 +11,7 @@ hate_speech_analyzer = create_analyzer(task="hate_speech", lang="es")
 
 focus_words = ['comunidad','gay','lgbti','racismo','negros','Mujer','Mujerzuela','incapaz','no inclusivo','desigualdad','genero','orgullo gay','descalificado']
 
-with open('backend/configs/predict_config.json') as json_file:
+with open('configs/predict_config.json') as json_file:
     predict_dict = json.load(json_file)
 
 def cleaning_tildes(sentence: str)->str: 
@@ -40,12 +40,16 @@ def cleaning_html_words(sentence:str)-> str:
     return sentence 
 
 def model_answer_to_front(predict_dict: dict, predicts,index: int)-> str: 
-    if predicts[index].output == []:
-        prediction = '#FFFFFF'
-        return prediction 
-    key_value = ','.join(predicts[index].ouput.sort())
-    prediction = predict_dict[key_value]
-    return prediction 
+    print('*************ENTRANDO AL MODELO**************')
+    prediction = predicts[index].output
+    print(prediction)
+    if prediction == []:
+        prediction_result = '#FFFFFF'
+        return prediction_result
+    prediction.sort() 
+    key_value = ','.join(prediction)
+    prediction_result = predict_dict[key_value]
+    return prediction_result 
 
 class Info(BaseModel):
     texto:List[str]
