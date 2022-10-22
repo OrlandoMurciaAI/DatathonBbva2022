@@ -17,7 +17,7 @@ In the end the idea is to have a service that can be consumed by everyone. There
 The objective is to use the SageMaker service for the deployment of the Machine Learning model, where the bias is processed and determined, being this the ideal tool for such purposes. In addition, this service will provide us with an endpoint which will allow us to consume the model quickly without worrying about the resources and loads that may occur in its use.  Additionally, an API service will be deployed in an EC2 instance where the information will be preprocessed to be sent to the model. 
 
 ## Diagram Flow 
-![Infraestructure drawio](https://user-images.githubusercontent.com/91997349/197352850-d0f3c0b6-0c88-48f3-84fb-6592575afa71.png)
+![Infraestructure drawio](https://user-images.githubusercontent.com/91997349/197352919-44e78a5e-2d19-4a1d-b34d-05b3f2608602.png)
 
 
 ## How To use
