@@ -6,9 +6,13 @@ from typing import List
 import re
 import time
 from pysentimiento import create_analyzer
+import json 
 hate_speech_analyzer = create_analyzer(task="hate_speech", lang="es")
 
 focus_words = ['comunidad','gay','lgbti','racismo','negros','Mujer','Mujerzuela','incapaz','no inclusivo','desigualdad','genero','orgullo gay','descalificado']
+
+with open('backend/configs/predict_config.json') as json_file:
+    predict_dict = json.load(json_file)
 
 def cleaning_tildes(sentence: str)->str: 
     """
@@ -35,14 +39,13 @@ def cleaning_html_words(sentence:str)-> str:
         sentence = sentence.replace(word,'') 
     return sentence 
 
-def model_answer_to_front(predicts,index): 
-    
+def model_answer_to_front(predict_dict: dict, predicts,index: int)-> str: 
     if predicts[index].output == []:
         prediction = '#FFFFFF'
         return prediction 
     key_value = ','.join(predicts[index].ouput.sort())
-    
-
+    prediction = predict_dict[key_value]
+    return prediction 
 
 class Info(BaseModel):
     texto:List[str]
@@ -87,14 +90,10 @@ def run(info:Info):
         predicts = hate_speech_analyzer.predict(valores) 
         print(predicts)
         for index,valor in enumerate(valores):
-            if predicts[index].output == []:
-                prediction = '#FFFFFF'
-            else: 
-                if 'aggressive'
             print('imprimiendo la data limpia *********************')
             print(valor)
-            response[llave].appen
-            response[llave].append(sum(1 for _ in re.finditer(r'\b%s\b' % re.escape('mujer'), valor)))
+            response[llave].append(model_answer_to_front(predict_dict, predicts, index))
+            #response[llave].append(sum(1 for _ in re.finditer(r'\b%s\b' % re.escape('mujer'), valor)))
     print('imprimiendo contador') 
     print(contador)
     print('imprimiendo response ')
