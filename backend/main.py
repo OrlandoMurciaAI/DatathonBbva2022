@@ -89,8 +89,11 @@ def run(info:Info):
     print('imprimiendo data')
     print(data)
     for llave,valores in data.items():
+        if valores == None:
+            valores = ['nada']
         valores = list(map(cleaning_tildes,valores))
         valores = list(map(cleaning_html_words,valores))
+        print('IMPRIMIENDO EL VALOR QUE  ERROR',valores)
         predicts = hate_speech_analyzer.predict(valores) 
         print(predicts)
         for index,valor in enumerate(valores):

@@ -68,7 +68,8 @@ async function replaceText(base){
         method: 'POST',
         headers: {
             'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
         },
         body: JSON.stringify(data)
     })
