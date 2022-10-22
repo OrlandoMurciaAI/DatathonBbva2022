@@ -3,6 +3,11 @@ import re
 words_to_delete = ['Δdocument','getElementById', 'ak_js_2',\
 'setAttribute', 'value','new', 'Date', 'getTime']
 
+def lower_string(sentence: str)->str:
+    sentence.lower() 
+
+    return sentence 
+
 def cleaning_tildes(sentence: str)->str: 
     """
     Definition: replace the tildes found in the sentence
