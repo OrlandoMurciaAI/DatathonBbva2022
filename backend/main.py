@@ -35,6 +35,15 @@ def cleaning_html_words(sentence:str)-> str:
         sentence = sentence.replace(word,'') 
     return sentence 
 
+def model_answer_to_front(predicts,index): 
+    
+    if predicts[index].output == []:
+        prediction = '#FFFFFF'
+        return prediction 
+    key_value = ','.join(predicts[index].ouput.sort())
+    
+
+
 class Info(BaseModel):
     texto:List[str]
     main_titles:List[str]
@@ -73,12 +82,18 @@ def run(info:Info):
     print('imprimiendo data')
     print(data)
     for llave,valores in data.items():
-        valores = list(map(cleaning_sentences,valores))
+        valores = list(map(cleaning_tildes,valores))
+        valores = list(map(cleaning_html_words,valores))
         predicts = hate_speech_analyzer.predict(valores) 
         print(predicts)
-        for valor in valores:
+        for index,valor in enumerate(valores):
+            if predicts[index].output == []:
+                prediction = '#FFFFFF'
+            else: 
+                if 'aggressive'
             print('imprimiendo la data limpia *********************')
             print(valor)
+            response[llave].appen
             response[llave].append(sum(1 for _ in re.finditer(r'\b%s\b' % re.escape('mujer'), valor)))
     print('imprimiendo contador') 
     print(contador)
