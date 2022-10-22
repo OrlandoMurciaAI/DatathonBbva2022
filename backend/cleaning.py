@@ -20,7 +20,9 @@ def cleaning_html_words(sentence:str)-> str:
     output: the sentence cleaned
     """
      
-    words_to_delete = ['Tus respuestas ayudan a mejorar la experiencia de la Búsqueda de Google.',\
+    words_to_delete = ['Nuestra Política de Tratamiento de Datos Personales ha cambiado. Conócela haciendo clic aquí.',\
+    'Hemos cambiado nuestra Política de privacidad y la Política de datos de navegación. Al Aceptar consideramos que apruebas los cambios',\
+    'Tus respuestas ayudan a mejorar la experiencia de la Búsqueda de Google.',\
     'Nota: Tus comentarios no influirán de forma directa en la clasificación de ninguna página.Más información',\
     '\xa0','Δdocument','getelementbyid', 'ak_js_2',\
     'setattribute', 'value','new', 'Date', 'getTime','ak_js_3','Debe responder al hcaptcha',\

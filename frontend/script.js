@@ -64,7 +64,7 @@ let resultado = replaceText(base).then((res)=>{
     else {
         tag.classList.remove('search') 
         tag.classList.add('success') 
-        tag.innerHTML= 'Libre de sesgo'
+        tag.innerHTML= "Libre de sesgo"
     }
 
 
