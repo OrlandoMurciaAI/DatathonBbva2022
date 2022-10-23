@@ -38,5 +38,6 @@ def run(info:Info):
     response = predictor.infer(info=info) 
     print('imprimiendo response ')
     response.url = url
+    building_dataframe(response)
 
     return {"result":response}
