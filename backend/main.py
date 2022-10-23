@@ -54,11 +54,11 @@ def run(info:Info):
 
     response = predictor.infer(info=data) 
     print('imprimiendo response ')
-    response["url"] = url
     for p in response:
         for punt in response[p]:
             df["puntaje"].append(punt)
-            df["url"].append(url)
+    response["url"] = url
+
     #building_dataframe(response, s3)
     print(df)
 
