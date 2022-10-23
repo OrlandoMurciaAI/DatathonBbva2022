@@ -60,7 +60,7 @@ def run(info:Info):
             df["puntaje"].append(text)
             df["url"].append(url)
     #building_dataframe(response, s3)
-    print(pd.DataFrame(df))
+    print(df)
 
     return {"result":response}
 
