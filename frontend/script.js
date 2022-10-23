@@ -21,7 +21,7 @@ function load_page(){
     let base ={
         texto :document.getElementsByTagName('p'),
         main_titles :document.getElementsByTagName('h1'),
-        second_titles: document.getElementsByTagName('h2')
+        second_titles: document.getElementsByTagName('span')
 
     }
 
@@ -43,7 +43,7 @@ function load_page(){
         for (let type in response){
             let counter = 0
             for(let text of response[type]){
-                if (text >0.2 ){
+                if (text >0.35 ){
                     flag = document.createElement('div')
                     flag.classList.add('flag-bias')
                     flag.innerText= Math.round(text * 100) +"%"
@@ -87,7 +87,7 @@ function load_page(){
 // función reductora aditiva para arreglos
 
 function add(accumulator, a) {
-    if(a>0.2){
+    if(a>0.35){
         return accumulator + 1;
     }else{
         return accumulator + 0;

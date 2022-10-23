@@ -15,7 +15,7 @@ hate_speech_analyzer = create_analyzer(task="hate_speech", lang="es")
 class Prediction():
     def __init__(self):  
         self.predict_dict = predict_dict
-        self.hate_speech_analyzer = pipe
+        self.analyzer = pipe
 
     def infer(self,info):
         response  = {
@@ -29,11 +29,11 @@ class Prediction():
             if valores != []:
                 valores = list(map(lower_string,valores))
                 valores = list(map(cleaning_tildes,valores))
-                valores = list(map(cleaning_html_words,valores))
-                predicts = self.hate_speech_analyzer(valores) 
+                #valores = list(map(cleaning_html_words,valores))
+                predicts = self.analyzer(valores) 
                 print(valores)
                 for index,valor in enumerate(valores):
                     print('imprimiendo la data limpia *********************')
-                    predicts = self.hate_speech_analyzer(valor) 
+                    predicts = self.analyzer(valor) 
                     response[llave].append(predicts[0][0]["score"])
         return response 
