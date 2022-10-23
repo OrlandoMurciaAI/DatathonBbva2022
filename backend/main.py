@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 from predict import Prediction
+from  data_collect import building_dataframe
 
 predictor = Prediction()
 
@@ -39,6 +40,6 @@ def run(info:Info):
     response = predictor.infer(info=data) 
     print('imprimiendo response ')
     response["url"] = url
-    # building_dataframe(response)
+    building_dataframe(response)
 
     return {"result":response}
