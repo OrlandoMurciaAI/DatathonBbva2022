@@ -10,3 +10,4 @@ backend/__pycache__/cleaning.cpython-310.pyc
 pruebas/predict_config.json
 backend/__pycache__/prediction_transformation.cpython-310.pyc
 backend/bias_model_2
+Scrapper

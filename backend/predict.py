@@ -37,15 +37,3 @@ class Prediction():
                     predicts = self.hate_speech_analyzer(valor) 
                     response[llave].append(predicts[0][0]["score"])
         return response 
-
-    # def __model_answer_to_front(self,predicts,index: int)-> str: 
-    #     print('Modificando las etiquetas del modelo por colores')
-    #     prediction = predicts[index].output
-    #     print(prediction)
-    #     if prediction == []:
-    #         prediction_result = 'rgba(0,0,0,0)'
-    #         return prediction_result
-    #     prediction.sort() 
-    #     key_value = ','.join(prediction)
-    #     prediction_result = self.predict_dict[key_value]
-    #     return prediction_result 

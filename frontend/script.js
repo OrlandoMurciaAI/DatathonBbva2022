@@ -1,10 +1,9 @@
-let data = {
-}
-document.body.append(document.createElement('script').setAttribute("src","script.js"))
+let data = {} // objeto que va a contener el body del request
 
-
+//Función destinada a ser ejecutada cada vez que se requiere hacer un análisis 
 function load_page(){
-    let tag;
+
+    let tag; // Etiqueta que va a contener el resultado del análisis y es de caracter informativo
     if(document.getElementById('tag')){
         tag = document.getElementById('tag')
     }else{
@@ -12,9 +11,7 @@ function load_page(){
         tag.setAttribute('id','tag')
 
     }
-    
-
-    tag.innerHTML = "<div class='lds-hourglass'></div> Analizando... <span class='close small-icon-analizer' id='btn-2'>X</span>"
+    tag.innerHTML = "<div class='container-anim'></div> Analizando... <span class='close small-icon-analizer' id='btn-2'>X</span>"
     tag.classList.add("tag-label")
     tag.classList.add("search")
     document.body.appendChild(tag)
@@ -28,19 +25,20 @@ function load_page(){
 
     }
 
-
-
+    // Se realiza el request para enviar la información del sitio web al modelo en el backend
     let resultado = replaceText(base).then((res)=>{
 
-        response = res['result']
+        response = res['result'] //resultado del análisis
 
+        //Si al probabilidad de que haya sesgo es superior al 20% se aplica un estilo especial a al etiqueta
+        // y se le indica al usuario através de una burbuja flotante la probabilidad de haber sesgo.
         for (let type in response){
             let counter = 0
             for(let text of response[type]){
-                if (text >0.5 ){
+                if (text >0.2 ){
                     flag = document.createElement('div')
                     flag.classList.add('flag-bias')
-                    flag.innerText= text.toFixed(2) * 100 +"%"
+                    flag.innerText= Math.round(text * 100) +"%"
                     base[type][counter].style.background = 'rgba(255, 58, 32, 0.4)'
                     base[type][counter].style.position = 'relative'
                     base[type][counter].appendChild(flag)
@@ -55,7 +53,7 @@ function load_page(){
 
 
         let final_counter = counter_textos + counter_titles + counter_sec_titles
-
+        // En caso de que ningún texto contenga un aprobabilidad mayor al 20% la etiqueta indicará que el texto está libre se sesgo
         if(final_counter >0){
             tag.classList.remove("search")
             tag.classList.add("fail") 
@@ -76,8 +74,10 @@ function load_page(){
 
 }
 
+// función reductora aditiva para arreglos
+
 function add(accumulator, a) {
-    if(a>0.5){
+    if(a>0.2){
         return accumulator + 1;
     }else{
         return accumulator + 0;
@@ -86,7 +86,7 @@ function add(accumulator, a) {
   }
 
 
-
+// Función que realiza la petición al servidor y estructura la respuesta
 
 async function replaceText(base){
 
@@ -97,7 +97,7 @@ async function replaceText(base){
     data.texto = textos.map((r)=>r.innerText)
     data.main_titles = main_titles.map((r)=>r.innerText)
     data.second_titles = second_titles.map((r)=>r.innerText)
-    let resultado = await fetch("http://127.0.0.1:8000/model",{
+    let resultado = await fetch("https://107.21.135.25/model",{
         method: 'POST',
         headers: {
             'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
@@ -113,4 +113,5 @@ async function replaceText(base){
 
     
 }
+
 load_page()

@@ -15,7 +15,7 @@
     align-items: center;
     font-size: 15px;
     margin: 10px;
-    box-shadow: 10px 10px 5px #aaaaaa;
+    box-shadow: 3px 3px 2px #aaaaaa91;
 }
 .search{
     background-color: rgba(0, 0, 0, 0.9);
@@ -34,13 +34,14 @@
 
 }
 
-.lds-hourglass {
-    display: inline-block;
-    position: relative;
+.container-anim {
     width: 40px;
     height: 40px;
+    display: inline-block;
+    position: relative;
+
   }
-  .lds-hourglass:after {
+  .container-anim:after {
     content: " ";
     display: block;
     border-radius: 50%;
@@ -49,16 +50,17 @@
     box-sizing: border-box;
     border: 20px solid #fff;
     border-color: #fff transparent #fff transparent;
-    animation: lds-hourglass 2s infinite;
+    animation-timing-function:ease;
+    animation: animation-pivot 2s infinite;
   }
-  @keyframes lds-hourglass {
+  @keyframes animation-pivot {
     0% {
       transform: rotate(0);
-      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      animation-timing-function: cubic-bezier(0.5, 0, 0.5, 0);
     }
     50% {
       transform: rotate(900deg);
-      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      animation-timing-function: cubic-bezier(0.2, 0.6, 0.1, 0.6);
     }
     100% {
       transform: rotate(1800deg);
@@ -91,6 +93,12 @@
     font-size: 10px !important;
     font-weight: 500;
     z-index: 100000;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 3px 3px 2px #aaaaaa91;
   }
 
   .close{    
