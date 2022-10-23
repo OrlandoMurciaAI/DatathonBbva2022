@@ -58,6 +58,7 @@ def run(info:Info):
         for punt in response[p]:
             df["puntaje"].append(punt)
     response["url"] = url
+    df['url'] = [url for i in len(df["texto"]) ]
 
     #building_dataframe(response, s3)
     print(df)
