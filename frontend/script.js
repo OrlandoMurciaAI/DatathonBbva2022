@@ -29,8 +29,16 @@ function load_page(){
     let resultado = replaceText(base).then((res)=>{
 
         response = res['result'] //resultado del análisis
+        let counter_textos = response["texto"].reduce(add,0)
+        let counter_titles=response["main_titles"].reduce(add,0)
+        let counter_sec_titles =response["second_titles"].reduce(add,0)
+        let final_counter = counter_textos + counter_titles + counter_sec_titles
 
-        //Si al probabilidad de que haya sesgo es superior al 20% se aplica un estilo especial a al etiqueta
+        if(final_counter >0){
+            tag.classList.remove("search")
+            tag.classList.add("fail") 
+            tag.innerHTML = "<span class='reload  small-icon-analizer'  id='btn-1'>⟳</span> Probabilidad de Sesgo <span class='close small-icon-analizer' id='btn-2'>X</span>"
+            //Si al probabilidad de que haya sesgo es superior al 20% se aplica un estilo especial a al etiqueta
         // y se le indica al usuario através de una burbuja flotante la probabilidad de haber sesgo.
         for (let type in response){
             let counter = 0
@@ -47,28 +55,30 @@ function load_page(){
                 
             }
         } 
-        let counter_textos = response["texto"].reduce(add,0)
-        let counter_titles=response["main_titles"].reduce(add,0)
-        let counter_sec_titles =response["second_titles"].reduce(add,0)
 
-
-        let final_counter = counter_textos + counter_titles + counter_sec_titles
-        // En caso de que ningún texto contenga un aprobabilidad mayor al 20% la etiqueta indicará que el texto está libre se sesgo
-        if(final_counter >0){
-            tag.classList.remove("search")
-            tag.classList.add("fail") 
-            tag.innerHTML = "<span class='reload  small-icon-analizer'  id='btn-1'>⟳</span> Probabilidad de Sesgo <span class='close small-icon-analizer' id='btn-2'>X</span>"
         }else{
             tag.classList.remove("search")
             tag.classList.add("success")
             tag.innerHTML = "<span class='reload small-icon-analizer'  id='btn-1'>⟳</span>Libre de Sesgo <span class='close small-icon-analizer'id='btn-2'>X</span>"
         }
+
+        
+        // En caso de que ningún texto contenga un aprobabilidad mayor al 20% la etiqueta indicará que el texto está libre se sesgo
+
         
         document.body.appendChild(tag)
         document.getElementById('btn-1').addEventListener('click', load_page)
         document.getElementById('btn-2').addEventListener('click', ()=>{
             tag.classList.add('invisible')
         })
+
+
+
+        
+
+
+
+
 });
 
 
@@ -97,6 +107,14 @@ async function replaceText(base){
     data.texto = textos.map((r)=>r.innerText);
     data.main_titles = main_titles.map((r)=>r.innerText);
     data.second_titles = second_titles.map((r)=>r.innerText);
+    if((data.texto.length + data.main_titles.length + data.second_titles.length)==0){
+        return {"result":{
+            "texto":[],
+            "main_titles":[],
+            "second_titles":[],
+
+        }}
+    }
     data.url = window.location.href;
     let resultado = await fetch("https://107.21.135.25/model",{
 
