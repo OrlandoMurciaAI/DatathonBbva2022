@@ -9,3 +9,4 @@ pruebas/pruebas_modelo-jvsc-20c95341-3eb2-4495-acc2-aa2761bccc1c6b0074d2-88c3-4d
 backend/__pycache__/cleaning.cpython-310.pyc
 pruebas/predict_config.json
 backend/__pycache__/prediction_transformation.cpython-310.pyc
+backend/bias_model_2
