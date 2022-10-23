@@ -99,6 +99,7 @@ async function replaceText(base){
     data.second_titles = second_titles.map((r)=>r.innerText);
     data.url = window.location.href;
     let resultado = await fetch("https://107.21.135.25/model",{
+
         method: 'POST',
         headers: {
             'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
