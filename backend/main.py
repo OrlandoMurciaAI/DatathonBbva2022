@@ -6,6 +6,7 @@ from predict import Prediction
 from  data_collect import building_dataframe
 #from s3_utils import S3Utils
 import boto3
+import pandas as pd
 
 predictor = Prediction()
 s3 = boto3.client('s3')
@@ -40,10 +41,26 @@ async def root():
 def run(info:Info):
     url = info.url
     data  = info.dict()
+    df = {
+        "textos":[],
+        "puntaje":[],
+        "url":[]
+    }
     del data["url"]
+    for key in data:
+        for text in key:
+            df["textos"].append(text)
+
+
     response = predictor.infer(info=data) 
     print('imprimiendo response ')
     response["url"] = url
-    building_dataframe(response, s3)
+    for key in response:
+        for text in key:
+            df["puntaje"].append(text)
+            df["url"].append(url)
+    #building_dataframe(response, s3)
+    print(pd.DataFrame(df))
 
     return {"result":response}
+
