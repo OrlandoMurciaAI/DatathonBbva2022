@@ -64,9 +64,8 @@ def run(info:Info):
     print('imprimiendo response ')
     response["url"] = url
     df['url'] = [url for _ in df["textos"] ]
+    building_dataframe(df, s3)
 
-    #building_dataframe(response, s3)
-    print(pd.DataFrame(df))
 
     return {"result":response}
 
