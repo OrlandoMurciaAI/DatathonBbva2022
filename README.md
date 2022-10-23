@@ -29,10 +29,11 @@ The objective is to use the SageMaker service for the deployment of the Machine 
 2. Go to extensions in your web browser (we have tested on brave and chrome) 
 ![image](https://user-images.githubusercontent.com/91997349/197349340-266c1602-f289-4f06-8045-a849c602c757.png)
 3. Enable developer mode
- ![image](https://user-images.githubusercontent.com/65092255/197394385-baee0e62-74c7-4251-813e-275a9c2cbf6a.png)
+![3](https://user-images.githubusercontent.com/65092255/197394829-36e2d87f-637e-43cd-bc63-cd697cc03c62.png)
+
 
 4. Click on the button *Load unpacked* 
- ![image](https://user-images.githubusercontent.com/65092255/197394404-c0c60493-bede-47d9-8af0-9a6ab8af2b18.png)
+![4](https://user-images.githubusercontent.com/65092255/197394841-f0903dbb-f862-4152-acc2-5972fcf43fd1.png)
 
 5. Upload **front end** folder
 
