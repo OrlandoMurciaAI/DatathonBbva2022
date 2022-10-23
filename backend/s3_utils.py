@@ -1,9 +1,11 @@
 import boto3
 from boto3.s3.transfer import TransferConfig
 
+boto3.client('s3')
+
 class S3Utils:
     def init(self):
-        self.client = boto3.client('s3')
+        self.client = 
         self.resource = boto3.resource('s3')
 
 
