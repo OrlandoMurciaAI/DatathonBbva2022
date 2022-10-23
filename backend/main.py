@@ -11,6 +11,13 @@ import pandas as pd
 predictor = Prediction()
 s3 = boto3.client('s3')
 
+def create_dict(base):
+    lista = []
+    for p in base:
+        for punt in base[p]:
+            lista.append(punt)
+    return lista
+
 
 
 class Info(BaseModel):
@@ -50,18 +57,18 @@ def run(info:Info):
     for key in data:
         for text in data[key]:
             df["textos"].append(text)
-
-
+    df["textos"] = create_dict(data)
+    
     response = predictor.infer(info=data) 
+    df["puntaje"] = create_dict(response)
     print('imprimiendo response ')
-    for p in response:
-        for punt in response[p]:
-            df["puntaje"].append(punt)
     response["url"] = url
-    df['url'] = [url for i in df["textos"] ]
+    df['url'] = [url for _ in df["textos"] ]
 
     #building_dataframe(response, s3)
     print(pd.DataFrame(df))
 
     return {"result":response}
+
+
 
