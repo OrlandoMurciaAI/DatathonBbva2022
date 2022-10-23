@@ -48,16 +48,16 @@ def run(info:Info):
     }
     del data["url"]
     for key in data:
-        for text in key:
-            df["textos"].append(key[text])
+        for text in data[key]:
+            df["textos"].append(text)
 
 
     response = predictor.infer(info=data) 
     print('imprimiendo response ')
     response["url"] = url
     for p in response:
-        for punt in p:
-            df["puntaje"].append(p[punt])
+        for punt in response[p]:
+            df["puntaje"].append(punt)
             df["url"].append(url)
     #building_dataframe(response, s3)
     print(df)
