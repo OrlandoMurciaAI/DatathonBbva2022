@@ -30,7 +30,7 @@ class Prediction():
                 print(valores)
                 valores = list(map(lower_string,valores))
                 valores = list(map(cleaning_tildes,valores))
-                valores = list(map(cleaning_html_words,valores))
+                # valores = list(map(cleaning_html_words,valores))
                 print(valores)
                 
                 for index,valor in enumerate(valores):
