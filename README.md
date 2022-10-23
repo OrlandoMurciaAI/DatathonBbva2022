@@ -29,8 +29,19 @@ The objective is to use the SageMaker service for the deployment of the Machine 
 2. Go to extensions in your web browser (we have tested on brave and chrome) 
 ![image](https://user-images.githubusercontent.com/91997349/197349340-266c1602-f289-4f06-8045-a849c602c757.png)
 3. Enable developer mode
+ ![image](https://user-images.githubusercontent.com/65092255/197394385-baee0e62-74c7-4251-813e-275a9c2cbf6a.png)
+
 4. Click on the button *Load unpacked* 
+ ![image](https://user-images.githubusercontent.com/65092255/197394404-c0c60493-bede-47d9-8af0-9a6ab8af2b18.png)
+
 5. Upload **front end** folder
-6 Enjoy! you are now surfing the web safer. 
+
+![1](https://user-images.githubusercontent.com/65092255/197394616-5de9f19d-8b6b-492b-bcb8-718cdb1f68f9.png)
+
+6.Check that your extension is on.
+![2](https://user-images.githubusercontent.com/65092255/197394696-66c1cb5c-2d89-4812-935d-271236b46b49.png)
+
+
+7. Enjoy! you are now surfing the web safer. 
 
 You know your extension is working when a small banner appeared at the left corner of your web browser window.
