@@ -23,7 +23,7 @@ class Prediction():
             "main_titles":[],
             "second_titles":[]
         }
-        data  = info.dict()
+        data = info
         print('imprimiendo data ')
         for llave,valores in data.items():
             if valores != []:

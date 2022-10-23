@@ -34,10 +34,11 @@ async def root():
 @app.post("/model")
 def run(info:Info):
     url = info.url
-    del info.url
-    response = predictor.infer(info=info) 
+    data  = info.dict()
+    del data["url"]
+    response = predictor.infer(info=data) 
     print('imprimiendo response ')
-    response.url = url
-    building_dataframe(response)
+    response["url"] = url
+    # building_dataframe(response)
 
     return {"result":response}
