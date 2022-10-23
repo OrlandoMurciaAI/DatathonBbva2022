@@ -116,7 +116,7 @@ async function replaceText(base){
         }}
     }
     data.url = window.location.href;
-    let resultado = await fetch("https://107.21.135.25/model",{
+    let resultado = await fetch("https://www.frity.com.co/appac2/api/v1/data/model",{
 
         method: 'POST',
         headers: {
