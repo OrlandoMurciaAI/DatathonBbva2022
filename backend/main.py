@@ -49,7 +49,7 @@ def run(info:Info):
     del data["url"]
     for key in data:
         for text in key:
-            df["textos"].append(text)
+            df["textos"].append(key[text])
 
 
     response = predictor.infer(info=data) 
@@ -57,7 +57,7 @@ def run(info:Info):
     response["url"] = url
     for p in response:
         for punt in p:
-            df["puntaje"].append(punt)
+            df["puntaje"].append(p[punt])
             df["url"].append(url)
     #building_dataframe(response, s3)
     print(df)
