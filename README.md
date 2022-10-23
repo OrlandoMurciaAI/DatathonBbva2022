@@ -10,14 +10,18 @@ Despite being an extension, it has a front end development that provides a frien
 
 The extension that can be easily downloaded in the extensions marketplace is mainly developed in javascript for the front end and connects to the backend through an API made in FAST API using python that will perform a preprocessing of the texts and finally pass to the AI model deployed in Sagemaker (AWS) to determine if there is bias or not in it.
 
-In the end the idea is to have a service that can be consumed by everyone. Therefore the development would be hosted in an ec2 instance and the model would be consumed by a sage maker api. This allows the EC2 instance not to be overloaded and the resources needed by the model to be managed automatically by the model. 
+In the end the idea is to have a service that can be consumed by everyone. Therefore the development would be hosted in an ec2 instance and the model . This allows the EC2 instance not to be overloaded and the resources needed by the model to be managed automatically by the model. 
 
 ## Technologic Challenge 
 
-The objective is to use the SageMaker service for the deployment of the Machine Learning model, where the bias is processed and determined, being this the ideal tool for such purposes. In addition, this service will provide us with an endpoint which will allow us to consume the model quickly without worrying about the resources and loads that may occur in its use.  Additionally, an API service will be deployed in an EC2 instance where the information will be preprocessed to be sent to the model. 
+EL objetivo es integrar diferentes herramientas desde el lado del frontend y del backend con el objetivo de prestar un servicio agil y funcional. El reto principal estuvo alrededor de la selección, entrenamiento y despliege del modelo que permitiría hacer inferenicias sobre los sesgos de género en los sitios web. No nos conformamos con solo realizar una revisión del texto, sino se desarrollo un almacenamiento en S3 de Amazon para almacenar todos los análisis que se hagan para que en un futuro se puedan lograr resultados cada vez más acertivos ya que el sesgo de género es un campo que aún tiene bastante por ser explorado. Toda esta información fue almacenada de forma tabular gracias a un proceso automatizado implementado en una lambda function permitiendo mantener la integridad y estructura de los datos.
+
+Como objetivo final y con miras a ayudar a mejorar el campo de la investigación de la diversidad e inclusión se incluyó un dashboard que permite realizar diversos análisis de una forma más visual, así se hizo uso del servicio de QuickSight de Amazon.
+
+The trained model 
 
 ## Diagram Flow 
-![Infraestructure drawio](https://user-images.githubusercontent.com/91997349/197352919-44e78a5e-2d19-4a1d-b34d-05b3f2608602.png)
+![model](https://user-images.githubusercontent.com/65092255/197395103-973d0722-e9ee-4d80-bc94-49461aab9373.png)
 
 
 ## How To use
@@ -25,8 +29,9 @@ The objective is to use the SageMaker service for the deployment of the Machine 
 2. Surf the web safe as simple as that !
 
 ### In case you don't find the extension in the market place
+### En caso de que no encuentres la extensión en el market place (los tiempos de google para revisión pueden tardar semanas)
 1. Clone this repository
-2. Go to extensions in your web browser (we have tested on brave and chrome) 
+3. Go to extensions in your web browser (we have tested on brave and chrome) 
 ![image](https://user-images.githubusercontent.com/91997349/197349340-266c1602-f289-4f06-8045-a849c602c757.png)
 3. Enable developer mode
 ![3](https://user-images.githubusercontent.com/65092255/197394829-36e2d87f-637e-43cd-bc63-cd697cc03c62.png)
@@ -45,4 +50,4 @@ The objective is to use the SageMaker service for the deployment of the Machine 
 
 7. Enjoy! you are now surfing the web safer. 
 
-You know your extension is working when a small banner appeared at the left corner of your web browser window.
+You know your extension is working when a small banner appeared at the left corner of your web browser window, and if there is any text with some bias it will be highlighted and it will have an small badge indicating the porbability to be a bias text.
