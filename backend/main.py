@@ -6,6 +6,8 @@ from predict import Prediction
 from  data_collect import building_dataframe
 
 predictor = Prediction()
+s3 = S3Utils()
+from s3_utils import S3Utils
 
 
 class Info(BaseModel):
@@ -40,6 +42,6 @@ def run(info:Info):
     response = predictor.infer(info=data) 
     print('imprimiendo response ')
     response["url"] = url
-    building_dataframe(response)
+    building_dataframe(response, s3)
 
     return {"result":response}
