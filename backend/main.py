@@ -4,10 +4,11 @@ from pydantic import BaseModel
 from typing import List
 from predict import Prediction
 from  data_collect import building_dataframe
+from s3_utils import S3Utils
 
 predictor = Prediction()
 s3 = S3Utils()
-from s3_utils import S3Utils
+
 
 
 class Info(BaseModel):
