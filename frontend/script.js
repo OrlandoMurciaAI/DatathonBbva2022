@@ -1,96 +1,88 @@
-const tag = document.createElement('p');
-tag.innerHTML = "Buscando.."
-tag.classList.add("tag-label")
-tag.classList.add("search")
-document.body.appendChild(tag)
-let base ={
-    texto :document.getElementsByTagName('p'),
-    main_titles :document.getElementsByTagName('h1'),
-    second_titles: document.getElementsByTagName('h2')
-
-}
-
-
 let data = {
 }
-let resultado = replaceText(base).then((res)=>{
-
-    response = res['result']
-
-    for (let type in response){
-        let counter = 0
-        var results = [] 
-        for(let text of response[type]){
-                base[type][counter].style.background = text 
-                results.push(text) 
-            counter = counter+=1
-        }
-    }
-    if (results.includes('rgba(255, 0, 0, 0.3)')){
-        tag.classList.remove("search") 
-        tag.classList.add("fail")
-        tag.innerHTML = "Probabilidad de sesgo agresivo"  
-    }
-    else if (results.includes('rgba(128, 0, 128, 0.3)')){
-        tag.classList.remove("search") 
-        tag.classList.add("fail")
-        tag.innerHTML = "Probabilidad de sesgo de odio"  
-    }
-    else if (results.includes('rgba(171, 219, 227, 0.3)')){
-        tag.classList.remove("search") 
-        tag.classList.add("fail")
-        tag.innerHTML = "Probabilidad de sesgo dirigido"  
-    }
-    else if (results.includes('rgba(146, 43, 62, 0.3)')){
-        tag.classList.remove("search") 
-        tag.classList.add("fail")
-        tag.innerHTML = "Probabilidad de sesgo agresivo y de odios"  
-    }
-    else if (results.includes('rgba(226, 135, 67, 0.3)')){
-        tag.classList.remove("search") 
-        tag.classList.add("fail")
-        tag.innerHTML = "Probabilidad de sesgo agresivo, de odios y dirigido"  
-    }
-    else if (results.includes('rgba(247, 1, 246, 0.3)')){
-        tag.classList.remove("search") 
-        tag.classList.add("fail")
-        tag.innerHTML = "Probabilidad de sesgo agresivo y dirigido"  
-    }
-    else if (results.includes('rgba(255, 242, 1, 0.3)')){
-        tag.classList.remove("search") 
-        tag.classList.add("fail") 
-        tag.innerHTML = "Probabilidad de sesgo de odios y dirigido" 
-    }
-    else {
-        tag.classList.remove('search') 
-        tag.classList.add('success') 
-        tag.innerHTML= "Libre de sesgo"
-    }
+document.body.append(document.createElement('script').setAttribute("src","script.js"))
 
 
+function load_page(){
+    let tag;
+    if(document.getElementById('tag')){
+        tag = document.getElementById('tag')
+    }else{
+        tag = document.createElement('div');
+        tag.setAttribute('id','tag')
 
-    //let counter_textos = response["texto"].reduce(add,0)
-    //let counter_titles=response["main_titles"].reduce(add,0)
-    //let counter_sec_titles =response["second_titles"].reduce(add,0)
-
-
-    //let final_counter = counter_textos + counter_titles + counter_sec_titles
-    //console.log(final_counter)
-    //if(final_counter >0){
-    //    tag.classList.remove("search")
-    //    tag.classList.add("fail") 
-    //     tag.innerHTML = "Probabilidad de Sesgo"
-    // }else{
-    //     tag.classList.remove("search")
-    //     tag.classList.add("success")
-    //     tag.innerHTML = "Libre de Sesgo"
-    // }
+    }
     
+
+    tag.innerHTML = "<div class='lds-hourglass'></div> Analizando... <span class='close small-icon-analizer' id='btn-2'>X</span>"
+    tag.classList.add("tag-label")
+    tag.classList.add("search")
     document.body.appendChild(tag)
+    document.getElementById('btn-2').addEventListener('click', ()=>{
+        tag.classList.add('invisible')
+    })
+    let base ={
+        texto :document.getElementsByTagName('p'),
+        main_titles :document.getElementsByTagName('h1'),
+        second_titles: document.getElementsByTagName('h2')
+
+    }
+
+
+
+    let resultado = replaceText(base).then((res)=>{
+
+        response = res['result']
+
+        for (let type in response){
+            let counter = 0
+            for(let text of response[type]){
+                if (text >0.5 ){
+                    flag = document.createElement('div')
+                    flag.classList.add('flag-bias')
+                    flag.innerText= text.toFixed(2) * 100 +"%"
+                    base[type][counter].style.background = 'rgba(255, 58, 32, 0.4)'
+                    base[type][counter].style.position = 'relative'
+                    base[type][counter].appendChild(flag)
+                    counter = counter+=1
+                }
+                
+            }
+        } 
+        let counter_textos = response["texto"].reduce(add,0)
+        let counter_titles=response["main_titles"].reduce(add,0)
+        let counter_sec_titles =response["second_titles"].reduce(add,0)
+
+
+        let final_counter = counter_textos + counter_titles + counter_sec_titles
+
+        if(final_counter >0){
+            tag.classList.remove("search")
+            tag.classList.add("fail") 
+            tag.innerHTML = "<span class='reload  small-icon-analizer'  id='btn-1'>⟳</span> Probabilidad de Sesgo <span class='close small-icon-analizer' id='btn-2'>X</span>"
+        }else{
+            tag.classList.remove("search")
+            tag.classList.add("success")
+            tag.innerHTML = "<span class='reload small-icon-analizer'  id='btn-1'>⟳</span>Libre de Sesgo <span class='close small-icon-analizer'id='btn-2'>X</span>"
+        }
+        
+        document.body.appendChild(tag)
+        document.getElementById('btn-1').addEventListener('click', load_page)
+        document.getElementById('btn-2').addEventListener('click', ()=>{
+            tag.classList.add('invisible')
+        })
 });
 
+
+}
+
 function add(accumulator, a) {
-    return accumulator + a;
+    if(a>0.5){
+        return accumulator + 1;
+    }else{
+        return accumulator + 0;
+    }
+    
   }
 
 
@@ -105,8 +97,6 @@ async function replaceText(base){
     data.texto = textos.map((r)=>r.innerText)
     data.main_titles = main_titles.map((r)=>r.innerText)
     data.second_titles = second_titles.map((r)=>r.innerText)
-    console.log(data)
-
     let resultado = await fetch("http://127.0.0.1:8000/model",{
         method: 'POST',
         headers: {
@@ -123,8 +113,4 @@ async function replaceText(base){
 
     
 }
-
-
-
-
-   
+load_page()

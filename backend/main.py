@@ -44,5 +44,5 @@ def run(info:Info):
     response = predictor.infer(info=info) 
     print('imprimiendo response ')
     print(response)
-    time.sleep(2)
+
     return {"result":response}

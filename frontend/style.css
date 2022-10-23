@@ -5,28 +5,105 @@
     bottom:10px !important;
     border-radius: 10px;
     color: white;
-    height: 3rem;
-    width:8rem;
+    height: 70px;
+    width:160px;
     z-index:10000 !important;
+    font-weight: 500;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
     text-align: center;
+    align-items: center;
+    font-size: 15px;
+    margin: 10px;
+    box-shadow: 10px 10px 5px #aaaaaa;
 }
 .search{
-    background-color: rgba(212, 249, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.9);
 
 }
 .fail{
-    background-color: rgba(255, 58, 32, 0.9);
+    background-color: rgba(166, 25, 6, 0.9);
 
 }
 .success{
-    background-color: rgba(2, 163, 23, 0.9);
+    background-color: rgba(3, 109, 18, 0.9);
 
 }
 .inf{
-    background-color: rgba(0, 37, 249, 0.9);
+    background-color: rgba(7, 31, 170, 0.9);
 
 }
+
+.lds-hourglass {
+    display: inline-block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+  }
+  .lds-hourglass:after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    box-sizing: border-box;
+    border: 20px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-hourglass 2s infinite;
+  }
+  @keyframes lds-hourglass {
+    0% {
+      transform: rotate(0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    50% {
+      transform: rotate(900deg);
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    100% {
+      transform: rotate(1800deg);
+    }
+  }
+
+  .small-icon-analizer{
+    position: absolute;
+    top:5px;
+    background-color: white !important;
+    color: black;
+    border-radius: 2rem;
+    height: 15px;
+    width:15px;
+    font-weight: bold;
+    font-size: 10px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10000000 !important;
+  }
+  .flag-bias{
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    font-size: 10px !important;
+    font-weight: 500;
+    z-index: 100000;
+  }
+
+  .close{    
+    right: 5px;
+
+
+  }
+  .reload{    
+    left: 5px;
+
+  }
+  .invisible{
+    visibility: hidden;
+  }
+  
 
