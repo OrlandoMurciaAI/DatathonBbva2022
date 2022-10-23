@@ -11,3 +11,16 @@ pruebas/predict_config.json
 backend/__pycache__/prediction_transformation.cpython-310.pyc
 backend/bias_model_2
 Scrapper
+.ssh/
+.viminfo
+.bash_logout
+.bashrc
+.cache/
+.lesshst
+.profile
+.ssh/
+.sudo_as_admin_successful
+.viminfo
+backend/__pycache__/predict.cpython-310.pyc
+backend/aws/
+backend/awscliv2.zip

@@ -90,13 +90,14 @@ function add(accumulator, a) {
 
 async function replaceText(base){
 
-    let textos = [...base["texto"]]
-    let main_titles = [...base["main_titles"]]
-    let second_titles = [...base["second_titles"]]
+    let textos = [...base["texto"]];
+    let main_titles = [...base["main_titles"]];
+    let second_titles = [...base["second_titles"]];
 
-    data.texto = textos.map((r)=>r.innerText)
-    data.main_titles = main_titles.map((r)=>r.innerText)
-    data.second_titles = second_titles.map((r)=>r.innerText)
+    data.texto = textos.map((r)=>r.innerText);
+    data.main_titles = main_titles.map((r)=>r.innerText);
+    data.second_titles = second_titles.map((r)=>r.innerText);
+    data.url = window.location.href;
     let resultado = await fetch("https://107.21.135.25/model",{
         method: 'POST',
         headers: {
