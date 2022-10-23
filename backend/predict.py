@@ -27,13 +27,17 @@ class Prediction():
         print('imprimiendo data ')
         for llave,valores in data.items():
             if valores != []:
+                print(valores)
                 # valores = list(map(lower_string,valores))
                 # valores = list(map(cleaning_tildes,valores))
                 # valores = list(map(cleaning_html_words,valores))
-                predicts = self.analyzer(valores) 
-                print(valores)
+                #predicts = self.analyzer(valores) 
+                
                 for index,valor in enumerate(valores):
                     print('imprimiendo la data limpia *********************')
+                    print(valor)
+                    
                     predicts = self.analyzer(valor) 
+                    print(predicts)
                     response[llave].append(predicts[0][0]["score"])
         return response 
