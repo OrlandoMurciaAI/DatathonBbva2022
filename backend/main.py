@@ -14,6 +14,7 @@ class Info(BaseModel):
     texto:List[str]
     main_titles:List[str]
     second_titles:List[str]
+    url:str
 
 
 app = FastAPI()
@@ -32,8 +33,10 @@ async def root():
 
 @app.post("/model")
 def run(info:Info):
+    url = info.url
+    del info.url
     response = predictor.infer(info=info) 
     print('imprimiendo response ')
-    print(response)
+    response.url = url
 
     return {"result":response}
