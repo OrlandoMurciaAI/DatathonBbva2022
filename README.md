@@ -1,4 +1,4 @@
-# DatathonBbva2022 :rainbow: 
+# HackathonBbva2022 :rainbow: 
 ## Description and context
 The main objective of the project is to recognize and mitigate the harm that can be caused to society when encountering biased content on the Internet that prevents inclusion in a more diverse world.
 
