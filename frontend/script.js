@@ -43,7 +43,7 @@ function load_page(){
         for (let type in response){
             let counter = 0
             for(let text of response[type]){
-                if (text >0.35 ){
+                if (text >0.25 ){
                     flag = document.createElement('div')
                     flag.classList.add('flag-bias')
                     flag.innerText= Math.round(text * 100) +"%"
@@ -87,7 +87,7 @@ function load_page(){
 // función reductora aditiva para arreglos
 
 function add(accumulator, a) {
-    if(a>0.35){
+    if(a>0.25){
         return accumulator + 1;
     }else{
         return accumulator + 0;

@@ -28,10 +28,10 @@ class Prediction():
         for llave,valores in data.items():
             if valores != []:
                 print(valores)
-                # valores = list(map(lower_string,valores))
-                # valores = list(map(cleaning_tildes,valores))
-                # valores = list(map(cleaning_html_words,valores))
-                #predicts = self.analyzer(valores) 
+                valores = list(map(lower_string,valores))
+                valores = list(map(cleaning_tildes,valores))
+                valores = list(map(cleaning_html_words,valores))
+                print(valores)
                 
                 for index,valor in enumerate(valores):
                     print('imprimiendo la data limpia *********************')
